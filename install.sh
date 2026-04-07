@@ -12,6 +12,8 @@ echo ""
 read -p "Enter your Main Domain (e.g., aetherbase.com): " FRONTEND_DOMAIN
 read -p "Enter your API Domain (e.g., api.aetherbase.com): " API_DOMAIN
 read -p "Enter an email for SSL registration: " SSL_EMAIL
+read -p "Enter a MongoDB Password (press enter to auto-generate): " MONGO_PASS
+read -p "Enter a JWT Secret Key (press enter to auto-generate): " JWT_SECRET_KEY
 
 echo ""
 echo "=> 📦 Installing system dependencies..."
@@ -40,10 +42,17 @@ else
     cd aetherbase
 fi
 
-# 4. Generate secure secrets
-echo "=> 🔐 Generating secure credentials..."
-MONGO_PASS=$(openssl rand -hex 16)
-JWT_SECRET_KEY=$(openssl rand -hex 32)
+# 4. Configure secure secrets
+echo "=> 🔐 Setting up secure credentials..."
+if [ -z "$MONGO_PASS" ]; then
+    MONGO_PASS=$(openssl rand -hex 16)
+    echo "  -> Auto-generated MongoDB Password."
+fi
+
+if [ -z "$JWT_SECRET_KEY" ]; then
+    JWT_SECRET_KEY=$(openssl rand -hex 32)
+    echo "  -> Auto-generated JWT Secret Key."
+fi
 
 echo "MONGO_PASSWORD=$MONGO_PASS" > .env
 echo "JWT_SECRET=$JWT_SECRET_KEY" >> .env
