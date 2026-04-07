@@ -1,119 +1,149 @@
 'use client';
 import { 
-  Activity, 
   Database, 
-  Users, 
-  HardDrive, 
-  ArrowUpRight, 
-  ArrowDownRight 
+  ShieldCheck, 
+  Zap, 
+  Cpu, 
+  Globe, 
+  ArrowRight,
+  Monitor,
+  Layout,
+  Terminal,
+  Activity,
+  ChevronRight,
+  Play
 } from 'lucide-react';
-import { 
-  AreaChart, 
-  Area, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  ResponsiveContainer 
-} from 'recharts';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
-const data = [
-  { name: 'Mon', reads: 4000, writes: 2400 },
-  { name: 'Tue', reads: 3000, writes: 1398 },
-  { name: 'Wed', reads: 2000, writes: 9800 },
-  { name: 'Thu', reads: 2780, writes: 3908 },
-  { name: 'Fri', reads: 1890, writes: 4800 },
-  { name: 'Sat', reads: 2390, writes: 3800 },
-  { name: 'Sun', reads: 3490, writes: 4300 },
-];
-
-export default function Dashboard() {
+export default function Home() {
   return (
-    <div className="p-8 space-y-8">
-      <div className="flex flex-col gap-1">
-        <h1 className="text-3xl font-bold tracking-tight">System Overview</h1>
-        <p className="text-zinc-400">Welcome back. Here is what is happening with AetherBase.</p>
-      </div>
+    <div className="min-h-screen bg-[#000] text-white overflow-hidden font-sans relative">
+      {/* Background Glows */}
+      <div className="absolute top-[-20%] left-[-10%] w-[80vw] h-[80vh] bg-indigo-600/10 rounded-full blur-[120px]" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vh] bg-fuchsia-600/10 rounded-full blur-[120px]" />
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {[
-          { label: 'Active Projects', value: '12', change: '+2', icon: Activity, trend: 'up' },
-          { label: 'Total Reads', value: '1.2M', change: '+12%', icon: Database, trend: 'up' },
-          { label: 'Active Users', value: '842', change: '-3%', icon: Users, trend: 'down' },
-          { label: 'Storage Used', value: '4.2GB', change: '+0.5%', icon: HardDrive, trend: 'up' },
-        ].map((stat) => (
-          <div key={stat.label} className="p-6 glass rounded-xl space-y-3">
-            <div className="flex items-center justify-between">
-              <stat.icon className="w-5 h-5 text-zinc-400" />
-              <div className={`flex items-center text-xs font-medium ${stat.trend === 'up' ? 'text-emerald-400' : 'text-rose-400'}`}>
-                {stat.change}
-                {stat.trend === 'up' ? <ArrowUpRight className="w-3 h-3 ml-1" /> : <ArrowDownRight className="w-3 h-3 ml-1" />}
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 px-4 max-w-7xl mx-auto flex flex-col items-center text-center">
+        <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.8 }}
+           className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] uppercase font-bold tracking-widest text-[#fff] mb-6"
+        >
+          <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+          AetherBase Engine v2.4 Now Operational
+        </motion.div>
+
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] text-white mb-8"
+        >
+          The Cloud is <br/>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-fuchsia-400 to-amber-400">Your Machine</span>
+        </motion.h1>
+
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-lg md:text-xl text-zinc-400 max-w-2xl mb-12"
+        >
+          A high-performance, self-hostable Backend-as-a-Service interface. 
+          Real-time sync, secure document storage, and distributed logic at the speed of light.
+        </motion.p>
+
+        <motion.div 
+           initial={{ opacity: 0, scale: 0.9 }}
+           animate={{ opacity: 1, scale: 1 }}
+           transition={{ duration: 0.5, delay: 0.6 }}
+           className="flex flex-col sm:flex-row gap-4"
+        >
+          <Link href="/dashboard" className="px-10 py-5 bg-white text-black text-sm font-bold uppercase rounded-2xl hover:bg-zinc-200 transition-all active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.1)] flex items-center gap-3">
+            Enter Management Console <ChevronRight className="w-4 h-4" />
+          </Link>
+          <button className="px-10 py-5 bg-zinc-900 border border-white/10 text-white text-sm font-bold uppercase rounded-2xl hover:bg-zinc-800 transition-all flex items-center gap-3">
+             <Play className="w-4 h-4 fill-current" /> View Demo
+          </button>
+        </motion.div>
+
+        {/* Feature Dashboard Preview Card */}
+        <motion.div 
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
+          className="mt-24 w-full max-w-5xl relative group"
+        >
+           {/* Cyber Frame */}
+          <div className="absolute inset-0 bg-gradient-to-t from-indigo-500/20 to-transparent rounded-[40px] blur-2xl opacity-50 transition-all group-hover:opacity-80" />
+          <div className="relative glass border border-white/10 rounded-[32px] overflow-hidden shadow-2xl">
+              <div className="h-10 bg-white/5 border-b border-white/10 flex items-center px-6 gap-2">
+                 <div className="w-2.5 h-2.5 rounded-full bg-rose-500/50" />
+                 <div className="w-2.5 h-2.5 rounded-full bg-amber-500/50" />
+                 <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/50" />
+                 <div className="flex-1 text-[10px] uppercase tracking-widest text-zinc-500 font-bold text-center pl-10">
+                    AetherBase - Protocol Layer [ONLINE]
+                 </div>
               </div>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-zinc-400">{stat.label}</p>
-              <p className="text-2xl font-bold">{stat.value}</p>
-            </div>
+              <div className="p-8 grid grid-cols-3 gap-6 opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700">
+                  <div className="h-48 bg-white/5 rounded-2xl border border-white/5 p-6 space-y-4">
+                     <Database className="w-6 h-6 text-indigo-400" />
+                     <div className="h-2 w-2/3 bg-white/10 rounded" />
+                     <div className="h-2 w-full bg-white/5 rounded" />
+                     <div className="h-2 w-1/2 bg-white/5 rounded" />
+                  </div>
+                  <div className="h-48 bg-white/5 rounded-2xl border border-white/5 p-6 space-y-4">
+                     <Activity className="w-6 h-6 text-fuchsia-400" />
+                     <div className="flex items-end gap-1 h-20 pt-10">
+                        {[4,8,12,6,10,14,5].map((h, i) => (
+                           <div key={i} className="flex-1 bg-fuchsia-500/50 rounded-sm" style={{ height: `${h*5}%` }} />
+                        ))}
+                     </div>
+                  </div>
+                  <div className="h-48 bg-white/5 rounded-2xl border border-white/5 p-6 space-y-4">
+                     <ShieldCheck className="w-6 h-6 text-emerald-400" />
+                     <div className="h-12 w-12 rounded-full border-4 border-emerald-500/20 border-t-emerald-500 animate-spin" />
+                  </div>
+              </div>
           </div>
-        ))}
-      </div>
+        </motion.div>
+      </section>
 
-      {/* Main Chart */}
-      <div className="p-6 glass rounded-xl">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="font-semibold">Operation Throughput</h3>
-          <div className="flex items-center gap-4 text-xs">
-            <div className="flex items-center gap-2"><div className="w-2 h-2 bg-white rounded-full"/> Reads</div>
-            <div className="flex items-center gap-2"><div className="w-2 h-2 bg-zinc-600 rounded-full"/> Writes</div>
-          </div>
+      {/* Feature Grid */}
+      <section className="max-w-7xl mx-auto py-32 px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+           {[
+             { title: "Distributed Database", icon: Database, color: "indigo", desc: "Schemaless document management with JSON native support and zero-latency indexing." },
+             { title: "Real-time Protocol", icon: zap, color: "yellow", desc: "Sub-50ms synchronization across thousands of concurrent sockets powered by Redis." },
+             { title: "Edge Logic", icon: Cpu, color: "fuchsia", desc: "Isomorphic security rules engine performing forensic validation on every transaction." },
+             { title: "Global Persistence", icon: Globe, color: "emerald", desc: "Automated backups and multi-region replication targets for enterprise mission criticality." },
+             { title: "Adaptive CLI", icon: Terminal, color: "zinc", desc: "Control your entire infrastructure from your local machine with our developer-first binary." },
+             { title: "Obsidian UI", icon: Layout, color: "sky", desc: "The platform you've been seeing. A custom-built dashboard for modern engineering teams." },
+           ].map((feat, i) => (
+             <motion.div 
+               key={i}
+               whileHover={{ y: -8 }}
+               className="p-8 glass rounded-3xl border-white/5 group hover:bg-white/[0.04] transition-all cursor-crosshair"
+             >
+               <div className={`w-14 h-14 rounded-2xl bg-${feat.color}-500/10 flex items-center justify-center mb-6 border border-${feat.color}-500/20`}>
+                 <feat.icon className={`w-6 h-6 text-${feat.color}-400`} />
+               </div>
+               <h3 className="text-xl font-bold mb-3 tracking-tight">{feat.title}</h3>
+               <p className="text-zinc-500 text-sm leading-relaxed">{feat.desc}</p>
+             </motion.div>
+           ))}
         </div>
-        <div className="h-[300px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={data}>
-              <defs>
-                <linearGradient id="colorReads" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#fff" stopOpacity={0.1}/>
-                  <stop offset="95%" stopColor="#fff" stopOpacity={0}/>
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#1e1e24" />
-              <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#71717a', fontSize: 12}} dy={10} />
-              <YAxis axisLine={false} tickLine={false} tick={{fill: '#71717a', fontSize: 12}} />
-              <Tooltip 
-                contentStyle={{backgroundColor: '#1e1e24', border: 'none', borderRadius: '8px', color: '#fff'}}
-                itemStyle={{color: '#fff'}}
-              />
-              <Area type="monotone" dataKey="reads" stroke="#fff" fillOpacity={1} fill="url(#colorReads)" strokeWidth={2} />
-              <Area type="monotone" dataKey="writes" stroke="#52525b" fillOpacity={0} strokeWidth={2} />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-      
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="p-6 glass rounded-xl h-64 flex flex-col items-center justify-center text-center space-y-2">
-            <Zap className="w-8 h-8 text-yellow-400 animate-pulse" />
-            <h3 className="font-semibold">System Health: Optimal</h3>
-            <p className="text-sm text-zinc-400 max-w-xs">All regions are currently operative. API latency is averaging 24ms.</p>
-        </div>
-        <div className="p-6 glass rounded-xl h-64 overflow-hidden relative">
-            <h3 className="font-semibold mb-4">Active Deployments</h3>
-            <div className="space-y-4">
-                {[1,2,3].map(i => (
-                    <div key={i} className="flex items-center gap-4">
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full" />
-                        <div className="flex-1">
-                            <p className="text-sm font-medium">project-alpha-v{i}.aetherbase.app</p>
-                            <p className="text-xs text-zinc-500">Deployed 2h ago</p>
-                        </div>
-                        <span className="text-xs font-mono bg-zinc-800 px-2 py-1 rounded">2.4MB</span>
-                    </div>
-                ))}
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#09090b] to-transparent pointer-events-none" />
-        </div>
-      </div>
+      </section>
+
+      <footer className="max-w-7xl mx-auto py-20 px-4 border-t border-white/5 text-center">
+         <div className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-700 opacity-50">
+            AetherBase Infrastructure Protocol &copy; 2026. Codeiner online.
+         </div>
+      </footer>
     </div>
   );
 }
+
+const zap = Zap; // Fixing icon casing for the mapping
