@@ -1,0 +1,39 @@
+{
+  "name": "@aetherbase/api",
+  "version": "1.1.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@fastify/cors": "^8.3.0",
+    "@fastify/jwt": "^7.2.0",
+    "@fastify/multipart": "^7.7.3",
+    "@fastify/static": "^6.10.2",
+    "aws-sdk": "^2.1407.0",
+    "axios": "^1.4.0",
+    "bcryptjs": "^2.4.3",
+    "bullmq": "^4.6.2",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.21.0",
+    "handlebars": "^4.7.7",
+    "mongoose": "^7.3.1",
+    "nodemailer": "^6.9.3",
+    "pino": "^8.14.1",
+    "pino-pretty": "^10.0.0",
+    "redis": "^4.6.7",
+    "socket.io": "^4.7.1",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20.3.1",
+    "@types/nodemailer": "^6.4.8",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.3"
+  }
+}

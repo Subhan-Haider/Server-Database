@@ -1,0 +1,3 @@
+src/controllers/storageController.ts(99,13): error TS2741: Property 'data' is missing in type '{ auth: any; path: string; method: string; }' but required in type '{ data: any; auth: any; path: string; method: string; }'.
+src/models/Project.ts(45,3): error TS2322: Type '{ type: MapConstructor; of: StringConstructor; default: { '*': string; }; }' is not assignable to type 'SchemaDefinitionProperty<Map<string, string>, IProject> | undefined'.
+  Type '{ type: MapConstructor; of: StringConstructor; default: { '*': string; }; }' is not assignable to type 'undefined'.

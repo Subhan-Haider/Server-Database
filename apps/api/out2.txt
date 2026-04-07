@@ -1,0 +1,67 @@
+src/controllers/authController.ts(11,17): error TS2339: Property 'email' does not exist on type 'unknown'.
+src/controllers/authController.ts(11,24): error TS2339: Property 'password' does not exist on type 'unknown'.
+src/controllers/authController.ts(11,34): error TS2339: Property 'metadata' does not exist on type 'unknown'.
+src/controllers/authController.ts(30,17): error TS2339: Property 'email' does not exist on type 'unknown'.
+src/controllers/authController.ts(30,24): error TS2339: Property 'password' does not exist on type 'unknown'.
+src/controllers/authController.ts(49,17): error TS2339: Property 'name' does not exist on type 'unknown'.
+src/controllers/authController.ts(81,17): error TS2339: Property 'collection' does not exist on type 'unknown'.
+src/controllers/authController.ts(81,29): error TS2339: Property 'rules' does not exist on type 'unknown'.
+src/controllers/dbController.ts(119,80): error TS2698: Spread types may only be created from object types.
+src/controllers/dbController.ts(123,35): error TS2698: Spread types may only be created from object types.
+src/controllers/dbController.ts(189,15): error TS2339: Property 'projectId' does not exist on type '{}'.
+src/controllers/dbController.ts(190,15): error TS2339: Property 'collectionName' does not exist on type '{}'.
+src/controllers/dbController.ts(194,19): error TS2339: Property 'limit' does not exist on type '{}'.
+src/controllers/dbController.ts(195,36): error TS2339: Property 'limit' does not exist on type '{}'.
+src/controllers/dbController.ts(196,26): error TS2339: Property 'limit' does not exist on type '{}'.
+src/controllers/dbController.ts(198,19): error TS2339: Property 'offset' does not exist on type '{}'.
+src/controllers/dbController.ts(199,37): error TS2339: Property 'offset' does not exist on type '{}'.
+src/controllers/dbController.ts(200,26): error TS2339: Property 'offset' does not exist on type '{}'.
+src/controllers/storageController.ts(99,13): error TS2741: Property 'data' is missing in type '{ auth: any; path: string; method: string; }' but required in type '{ data: any; auth: any; path: string; method: string; }'.
+src/models/Project.ts(45,3): error TS2322: Type '{ type: MapConstructor; of: StringConstructor; default: { '*': string; }; }' is not assignable to type 'SchemaDefinitionProperty<Map<string, string>, IProject> | undefined'.
+  Type '{ type: MapConstructor; of: StringConstructor; default: { '*': string; }; }' is not assignable to type 'undefined'.
+src/routes/index.ts(19,62): error TS2345: Argument of type '(req: FastifyRequest<{ Body: any; }>, reply: FastifyReply) => Promise<undefined>' is not assignable to parameter of type 'RouteHandlerMethod<RawServerDefault, IncomingMessage, ServerResponse<IncomingMessage>, RouteGenericInterface, unknown, FastifySchema, FastifyTypeProviderDefault, FastifyBaseLogger>'.
+  Types of parameters 'req' and 'request' are incompatible.
+    Type 'FastifyRequest<RouteGenericInterface, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>' is not assignable to type 'FastifyRequest<{ Body: any; }, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>'.
+      Type 'RouteGenericInterface' is not assignable to type '{ Body: any; }'.
+        Property 'Body' is optional in type 'RouteGenericInterface' but required in type '{ Body: any; }'.
+src/routes/index.ts(21,84): error TS2345: Argument of type '(req: FastifyRequest<{ Body: any; }>, reply: FastifyReply) => Promise<undefined>' is not assignable to parameter of type 'RouteHandlerMethod<RawServerDefault, IncomingMessage, ServerResponse<IncomingMessage>, RouteGenericInterface, unknown, FastifySchema, FastifyTypeProviderDefault, FastifyBaseLogger>'.
+  Types of parameters 'req' and 'request' are incompatible.
+    Type 'FastifyRequest<RouteGenericInterface, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>' is not assignable to type 'FastifyRequest<{ Body: any; }, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>'.
+      Type 'RouteGenericInterface' is not assignable to type '{ Body: any; }'.
+        Property 'Body' is optional in type 'RouteGenericInterface' but required in type '{ Body: any; }'.
+src/routes/index.ts(24,71): error TS2345: Argument of type '(req: FastifyRequest<{ Params: { collection: string; }; Body: any; }>, reply: FastifyReply) => Promise<void>' is not assignable to parameter of type 'RouteHandlerMethod<RawServerDefault, IncomingMessage, ServerResponse<IncomingMessage>, RouteGenericInterface, unknown, FastifySchema, FastifyTypeProviderDefault, FastifyBaseLogger>'.
+  Types of parameters 'req' and 'request' are incompatible.
+    Type 'FastifyRequest<RouteGenericInterface, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>' is not assignable to type 'FastifyRequest<{ Params: { collection: string; }; Body: any; }, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>'.
+      Type 'RouteGenericInterface' is not assignable to type '{ Params: { collection: string; }; Body: any; }'.
+        Types of property 'Params' are incompatible.
+          Type 'unknown' is not assignable to type '{ collection: string; }'.
+src/routes/index.ts(25,70): error TS2345: Argument of type '(req: FastifyRequest<{ Params: { collection: string; }; Querystring: any; Body: any; }>, reply: FastifyReply) => Promise<void>' is not assignable to parameter of type 'RouteHandlerMethod<RawServerDefault, IncomingMessage, ServerResponse<IncomingMessage>, RouteGenericInterface, unknown, FastifySchema, FastifyTypeProviderDefault, FastifyBaseLogger>'.
+  Types of parameters 'req' and 'request' are incompatible.
+    Type 'FastifyRequest<RouteGenericInterface, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>' is not assignable to type 'FastifyRequest<{ Params: { collection: string; }; Querystring: any; Body: any; }, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>'.
+      Type 'RouteGenericInterface' is not assignable to type '{ Params: { collection: string; }; Querystring: any; Body: any; }'.
+        Types of property 'Params' are incompatible.
+          Type 'unknown' is not assignable to type '{ collection: string; }'.
+src/routes/index.ts(26,77): error TS2345: Argument of type '(req: FastifyRequest<{ Params: { collection: string; }; Querystring: any; Body: any; }>, reply: FastifyReply) => Promise<void>' is not assignable to parameter of type 'RouteHandlerMethod<RawServerDefault, IncomingMessage, ServerResponse<IncomingMessage>, RouteGenericInterface, unknown, FastifySchema, FastifyTypeProviderDefault, FastifyBaseLogger>'.
+  Types of parameters 'req' and 'request' are incompatible.
+    Type 'FastifyRequest<RouteGenericInterface, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>' is not assignable to type 'FastifyRequest<{ Params: { collection: string; }; Querystring: any; Body: any; }, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>'.
+      Type 'RouteGenericInterface' is not assignable to type '{ Params: { collection: string; }; Querystring: any; Body: any; }'.
+        Types of property 'Params' are incompatible.
+          Type 'unknown' is not assignable to type '{ collection: string; }'.
+src/routes/index.ts(27,74): error TS2345: Argument of type '(req: FastifyRequest<{ Params: { collection: string; id: string; }; }>, reply: FastifyReply) => Promise<undefined>' is not assignable to parameter of type 'RouteHandlerMethod<RawServerDefault, IncomingMessage, ServerResponse<IncomingMessage>, RouteGenericInterface, unknown, FastifySchema, FastifyTypeProviderDefault, FastifyBaseLogger>'.
+  Types of parameters 'req' and 'request' are incompatible.
+    Type 'FastifyRequest<RouteGenericInterface, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>' is not assignable to type 'FastifyRequest<{ Params: { collection: string; id: string; }; }, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>'.
+      Type 'RouteGenericInterface' is not assignable to type '{ Params: { collection: string; id: string; }; }'.
+        Types of property 'Params' are incompatible.
+          Type 'unknown' is not assignable to type '{ collection: string; id: string; }'.
+src/routes/index.ts(28,76): error TS2345: Argument of type '(req: FastifyRequest<{ Params: { collection: string; id: string; }; Body: any; }>, reply: FastifyReply) => Promise<undefined>' is not assignable to parameter of type 'RouteHandlerMethod<RawServerDefault, IncomingMessage, ServerResponse<IncomingMessage>, RouteGenericInterface, unknown, FastifySchema, FastifyTypeProviderDefault, FastifyBaseLogger>'.
+  Types of parameters 'req' and 'request' are incompatible.
+    Type 'FastifyRequest<RouteGenericInterface, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>' is not assignable to type 'FastifyRequest<{ Params: { collection: string; id: string; }; Body: any; }, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>'.
+      Type 'RouteGenericInterface' is not assignable to type '{ Params: { collection: string; id: string; }; Body: any; }'.
+        Types of property 'Params' are incompatible.
+          Type 'unknown' is not assignable to type '{ collection: string; id: string; }'.
+src/routes/index.ts(29,77): error TS2345: Argument of type '(req: FastifyRequest<{ Params: { collection: string; id: string; }; }>, reply: FastifyReply) => Promise<undefined>' is not assignable to parameter of type 'RouteHandlerMethod<RawServerDefault, IncomingMessage, ServerResponse<IncomingMessage>, RouteGenericInterface, unknown, FastifySchema, FastifyTypeProviderDefault, FastifyBaseLogger>'.
+  Types of parameters 'req' and 'request' are incompatible.
+    Type 'FastifyRequest<RouteGenericInterface, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>' is not assignable to type 'FastifyRequest<{ Params: { collection: string; id: string; }; }, RawServerDefault, IncomingMessage, FastifySchema, FastifyTypeProviderDefault, unknown, FastifyBaseLogger, ResolveFastifyRequestType<...>>'.
+      Type 'RouteGenericInterface' is not assignable to type '{ Params: { collection: string; id: string; }; }'.
+        Types of property 'Params' are incompatible.
+          Type 'unknown' is not assignable to type '{ collection: string; id: string; }'.

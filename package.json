@@ -1,0 +1,20 @@
+{
+  "name": "aetherbase-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev --workspace=@aetherbase/api",
+    "dev:dashboard": "npm run dev --workspace=@aetherbase/dashboard",
+    "build": "npm run build --workspaces",
+    "docker:up": "docker-compose up --build",
+    "docker:down": "docker-compose down"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "concurrently": "^8.0.0"
+  }
+}

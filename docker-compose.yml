@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: aetherbase-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - aether-network
+
+  redis:
+    image: redis:latest
+    container_name: aetherbase-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - aether-network
+
+  # Mongo Express for quick dev debug
+  mongo-express:
+    image: mongo-express:latest
+    container_name: aetherbase-mongo-express
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_PORT: 27017
+    depends_on:
+      - mongodb
+    networks:
+      - aether-network
+
+networks:
+  aether-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:

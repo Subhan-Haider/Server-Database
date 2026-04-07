@@ -1,0 +1,36 @@
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+# Copy root package.json and workspace definitions
+COPY package.json package-lock.json* tsconfig.json ./
+COPY apps/api/package.json ./apps/api/
+
+# Install dependencies for the workspace
+RUN npm install
+
+# Copy source code
+COPY apps/api/ ./apps/api/
+COPY packages/ ./packages/
+
+# Build the API
+# If there are local packages to build, do that first, but right now we just build the API
+RUN npm run build --workspace=@aetherbase/api
+
+FROM node:18-alpine AS runner
+
+WORKDIR /app
+ENV NODE_ENV=production
+
+COPY package.json package-lock.json* ./
+COPY apps/api/package.json ./apps/api/
+
+# Install only production dependencies
+RUN npm install --omit=dev
+
+# Copy compiled source
+COPY --from=builder /app/apps/api/dist ./apps/api/dist
+
+EXPOSE 3001
+
+CMD ["node", "apps/api/dist/index.js"]

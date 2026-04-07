@@ -1,0 +1,23 @@
+{
+  "name": "@aetherbase/cli",
+  "version": "1.0.0",
+  "bin": {
+    "aether": "bin/aether.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node bin/aether.js"
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "axios": "^1.4.0",
+    "inquirer": "^9.2.7",
+    "chalk": "^5.2.0",
+    "fs-extra": "^11.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.3",
+    "@types/node": "^20.3.1",
+    "@types/fs-extra": "^11.0.1"
+  }
+}
