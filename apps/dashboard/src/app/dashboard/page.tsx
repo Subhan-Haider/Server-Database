@@ -4,8 +4,9 @@ import {
   Database, 
   Users, 
   HardDrive, 
-  ArrowUpRight, 
-  ArrowDownRight 
+  ArrowUpRight,
+  ArrowDownRight,
+  Zap 
 } from 'lucide-react';
 import { 
   AreaChart, 
