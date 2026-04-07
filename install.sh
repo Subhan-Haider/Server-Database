@@ -15,10 +15,36 @@ read -p "Enter an email for SSL registration: " SSL_EMAIL
 read -p "Enter a MongoDB Password (press enter to auto-generate): " MONGO_PASS
 read -p "Enter a JWT Secret Key (press enter to auto-generate): " JWT_SECRET_KEY
 
+# 1.1 DNS Pre-verification
+echo ""
+echo "=> 🔍 Verifying DNS configuration..."
+PUBLIC_IP=$(curl -s https://ifconfig.me)
+echo "Your server's Public IP is: $PUBLIC_IP"
+
+# Check main domain
+MAIN_IP=$(dig +short $FRONTEND_DOMAIN | tail -n1)
+if [ "$MAIN_IP" != "$PUBLIC_IP" ]; then
+    echo "⚠️ Warning: $FRONTEND_DOMAIN points to $MAIN_IP, but your server IP is $PUBLIC_IP"
+    read -p "DNS might not be ready. Continue anyway? (y/n): " PROCEED
+    if [ "$PROCEED" != "y" ]; then exit 1; fi
+else
+    echo "✅ Main Domain DNS verified ($MAIN_IP)"
+fi
+
+# Check API domain
+API_IP=$(dig +short $API_DOMAIN | tail -n1)
+if [ "$API_IP" != "$PUBLIC_IP" ]; then
+    echo "⚠️ Warning: $API_DOMAIN points to $API_IP, but your server IP is $PUBLIC_IP"
+    read -p "DNS might not be ready. Continue anyway? (y/n): " PROCEED
+    if [ "$PROCEED" != "y" ]; then exit 1; fi
+else
+    echo "✅ API Domain DNS verified ($API_IP)"
+fi
+
 echo ""
 echo "=> 📦 Installing system dependencies..."
 sudo apt update -y > /dev/null 2>&1
-sudo apt install -y curl git openssl > /dev/null 2>&1
+sudo apt install -y curl git openssl dnsutils > /dev/null 2>&1
 
 # 2. Check for Docker
 if ! command -v docker &> /dev/null; then
