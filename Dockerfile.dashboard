@@ -2,7 +2,7 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+# libc6-compat needed for alpine
 RUN apk add --no-cache libc6-compat
 
 # Copy package info
@@ -12,14 +12,14 @@ COPY apps/dashboard/package.json ./apps/dashboard/
 # Install dependencies (for the monorepo)
 RUN npm install
 
-# Copy source code
+# Copy source code + next.config.js
 COPY apps/dashboard/ ./apps/dashboard/
 COPY packages/ ./packages/
 
 # Next.js telemetry disable
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# Build project
+# Build project (standalone output)
 RUN npm run build --workspace=@aetherbase/dashboard
 
 FROM node:18-alpine AS runner
@@ -31,9 +31,16 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy over compiled build
-COPY --from=builder /app/apps/dashboard/public ./apps/dashboard/public
+# Create public folder in case it doesn't exist (prevents COPY failure)
+RUN mkdir -p ./apps/dashboard/public
+
+# Copy public folder if it exists
+COPY --from=builder /app/apps/dashboard/public* ./apps/dashboard/public/
+
+# Copy standalone build output
 COPY --from=builder --chown=nextjs:nodejs /app/apps/dashboard/.next/standalone ./
+
+# Copy static assets
 COPY --from=builder --chown=nextjs:nodejs /app/apps/dashboard/.next/static ./apps/dashboard/.next/static
 
 USER nextjs
