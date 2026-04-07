@@ -69,6 +69,8 @@ fi
 
 # Stop anything on port 80 just in case
 sudo systemctl stop nginx 2>/dev/null || true
+sudo systemctl stop apache2 2>/dev/null || true
+docker compose -f docker-compose.prod.yml down 2>/dev/null || true
 
 # Generate certs
 sudo certbot certonly --standalone --non-interactive --agree-tos --email $SSL_EMAIL -d $FRONTEND_DOMAIN -d www.$FRONTEND_DOMAIN -d $API_DOMAIN
