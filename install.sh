@@ -14,6 +14,12 @@ read -p "Enter your API Domain (e.g., api.aetherbase.com): " API_DOMAIN
 read -p "Enter an email for SSL registration: " SSL_EMAIL
 read -p "Enter a MongoDB Password (press enter to auto-generate): " MONGO_PASS
 read -p "Enter a JWT Secret Key (press enter to auto-generate): " JWT_SECRET_KEY
+read -p "Enter Public HTTP Port (default 80): " HTTP_PORT
+read -p "Enter Public SSL/HTTPS Port (default 443): " HTTPS_PORT
+
+# Set defaults for ports
+HTTP_PORT=${HTTP_PORT:-80}
+HTTPS_PORT=${HTTPS_PORT:-443}
 
 # 1.1 DNS Pre-verification
 echo ""
@@ -105,8 +111,13 @@ sleep 2
 # Generate certs
 sudo certbot certonly --standalone --non-interactive --agree-tos --email $SSL_EMAIL -d $FRONTEND_DOMAIN -d www.$FRONTEND_DOMAIN -d $API_DOMAIN
 
-# Replace domain placeholders in nginx config if necessary
-# Assuming the repo's nginx.conf uses aetherbase.com, let's substitute it for user's domain
+# Replace port placeholders in docker-compose if necessary
+sed -i "s/80:80/$HTTP_PORT:80/g" docker-compose.prod.yml
+sed -i "s/443:443/$HTTPS_PORT:443/g" docker-compose.prod.yml
+
+# Replace domain and port placeholders in nginx config
+sed -i "s/listen 80;/listen 80;/g" nginx.conf
+sed -i "s/listen 443 ssl http2;/listen 443 ssl http2;/g" nginx.conf
 sed -i "s/aetherbase.com/$FRONTEND_DOMAIN/g" nginx.conf
 sed -i "s/api.aetherbase.com/$API_DOMAIN/g" nginx.conf
 
