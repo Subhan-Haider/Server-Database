@@ -94,6 +94,18 @@ aether deploy
 
 AetherBase is designed to be deployed on a single VPS using Docker Compose. For scaling, the Realtime engine uses Redis Pub/Sub, and the API can be load-balanced behind NGINX.
 
+### ⚡ 1-Click Server Installation
+
+If you have a fresh Ubuntu 22.04+ server, you can securely install the complete production platform (Next.js Dashboard, Fastify API, MongoDB, Redis, and SSL Certs) using a single command. 
+
+SSH into your server and run:
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Subhan-Haider/Server-Database/main/install.sh)"
+```
+
+The automated installer will prompt you for your target domains and interactively assist you in generating highly-secure database credentials and JWT keys.
+
 ---
 
 *Built with ❤️ by the AetherBase Team.*
