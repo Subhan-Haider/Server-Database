@@ -10,22 +10,22 @@
   "dependencies": {
     "@fastify/cors": "^8.3.0",
     "@fastify/jwt": "^7.2.0",
-    "@fastify/multipart": "^7.7.3",
+    "@fastify/multipart": "^9.4.0",
     "@fastify/static": "^6.10.2",
     "aws-sdk": "^2.1407.0",
     "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
     "bullmq": "^4.6.2",
     "dotenv": "^16.3.1",
-    "fastify": "^4.21.0",
+    "fastify": "^5.8.4",
     "handlebars": "^4.7.7",
     "mongoose": "^7.3.1",
-    "nodemailer": "^6.9.3",
+    "nodemailer": "^8.0.4",
     "pino": "^8.14.1",
     "pino-pretty": "^10.0.0",
     "redis": "^4.6.7",
     "socket.io": "^4.7.1",
-    "zod": "^3.21.4"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
